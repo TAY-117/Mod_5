@@ -105,20 +105,20 @@ namespace Mod_5.HomeWork
 			return data;         // возвращаем основные данные о пользователе
 		}
 
-		static void ShowDataUser(string name, string fam_name, int age, bool has_pets, string[] pet_names, string[] fv_colors)
+		static void ShowDataUser((string name, string fam_name, int age, bool has_pets, string[] pet_names, string[] fv_colors) user)
 		{
 			Console.WriteLine("\nДАННЫЕ О ПОЛЬЗОВАТЕЛЕ");
-			Console.WriteLine($"Фамилия: {fam_name}");
-			Console.WriteLine($"Имя    : {name}");
-			Console.WriteLine($"Возраст, лет: {age}");
+			Console.WriteLine($"Фамилия: {user.fam_name}");
+			Console.WriteLine($"Имя    : {user.name}");
+			Console.WriteLine($"Возраст, лет: {user.age}");
 			Console.Write("Наличие питомцев: ");
-			if (has_pets)
+			if (user.has_pets)
 			{
 				Console.WriteLine("есть.");
 				Console.WriteLine("Имена питомцев:");
-				for (int i = 0; i < pet_names.Length; i++)
+				for (int i = 0; i < user.pet_names.Length; i++)
 				{
-					Console.WriteLine(pet_names[i]);
+					Console.WriteLine(user.pet_names[i]);
 				}
 			}
 			else
@@ -126,9 +126,9 @@ namespace Mod_5.HomeWork
 				Console.WriteLine("нет.");
 			};
 			Console.WriteLine("Наименования любимых цветов (краски):");
-			for (int i = 0; i < fv_colors.Length; i++)
+			for (int i = 0; i < user.fv_colors.Length; i++)
 			{
-				Console.WriteLine(fv_colors[i]);
+				Console.WriteLine(user.fv_colors[i]);
 			}
 			Console.WriteLine("\nЭто всё. Нажмите любую клавишу.");
 			Console.ReadKey();
@@ -136,16 +136,7 @@ namespace Mod_5.HomeWork
 
 		static void Main(string[] args)
 		{
-			(string name,        // имя
-			 string fam_name,    // фамилия 
-			 int age,            // возраст
-			 bool has_pets,      // есть ли у пользователя питомцы
-			 string[] pet_names, // массив имён питомцев
-			 string[] fv_colors  // массив любимых цветов (краски)
-			) user;              // кортеж данных пользователя
-
-			user = GetDataUser();
-			ShowDataUser(user.name, user.fam_name, user.age, user.has_pets, user.pet_names, user.fv_colors);
+			ShowDataUser(GetDataUser());
 		}
 	}
 }
